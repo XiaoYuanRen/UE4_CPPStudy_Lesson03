@@ -4,6 +4,8 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Pawn.h"
+#include "RunTime/Engine/Classes/Particles/ParticleSystemComponent.h"
+#include "CollisionPawnMovementComponent.h"
 #include "CollisionPawn.generated.h"
 
 UCLASS()
@@ -14,6 +16,8 @@ class LESSON03_API ACollisionPawn : public APawn
 public:
 	// Sets default values for this pawn's properties
 	ACollisionPawn();
+
+	class UCollisionPawnMovementComponent* OurMovementComponent;
 
 protected:
 	// Called when the game starts or when spawned
@@ -27,5 +31,12 @@ public:
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
 	UParticleSystemComponent* OurParitcleSystem;
+
+	virtual UPawnMovementComponent* GetMovementComponent() const override;
+
+	void MoveForward(float AxisValue);
+	void MoveRight(float AxisValue);
+	void Turn(float AxisValue);
+	void ToggelFire();
 	
 };
